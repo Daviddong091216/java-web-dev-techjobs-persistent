@@ -14,26 +14,28 @@ import java.util.Optional;
 @Controller
 @RequestMapping("skills")
 public class SkillController {
+
     @Autowired
     private SkillRepository skillRepository;
 
     @GetMapping()
     public String displayAllSkills(Model model) {
-        model.addAttribute("skills",skillRepository.findAll());
+        model.addAttribute("title", "All Skills");
+        model.addAttribute("skills", skillRepository.findAll());
         return "skills/index";
     }
 
 
     @GetMapping("add")
     public String displayAddSkillForm(Model model) {
+        model.addAttribute("title", "Add Skill");
         model.addAttribute(new Skill());
         return "skills/add";
     }
 
     @PostMapping("add")
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill,
-                                         Errors errors, Model model) {
-
+                                      Errors errors) {
         if (errors.hasErrors()) {
             return "skills/add";
         }
@@ -43,7 +45,6 @@ public class SkillController {
 
     @GetMapping("view/{skillId}")
     public String displayViewSkill(Model model, @PathVariable int skillId) {
-
         Optional optSkill = skillRepository.findById(skillId);
         if (optSkill.isPresent()) {
             Skill skill = (Skill) optSkill.get();
@@ -53,4 +54,23 @@ public class SkillController {
             return "redirect:../";
         }
     }
+
+    @GetMapping("delete")
+    public String renderDeleteEventForm(Model model) {
+        model.addAttribute("title", "Delete Skill");
+        model.addAttribute("skills", skillRepository.findAll());
+        return "skills/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteEventsForm(@RequestParam(required = false) int[] skillIds) {
+        if (skillIds != null) {
+            for (int id : skillIds) {
+                skillRepository.deleteById(id);
+            }
+        }
+        return "redirect:";
+    }
+
+
 }

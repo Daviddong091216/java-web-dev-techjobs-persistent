@@ -40,30 +40,31 @@ public class HomeController {
     @GetMapping("add")
     public String displayAddJobForm(Model model) {
         model.addAttribute("title", "Add Job");
+        model.addAttribute("job", new Job());
         model.addAttribute("employers", employerRepository.findAll());
         model.addAttribute("skills", skillRepository.findAll());
-        model.addAttribute("job",new Job());
         return "add";
     }
 
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
-                                    Errors errors, Model model,
-                                    @RequestParam int employerId,
-                                    @RequestParam List<Integer> skills) {
+                                    @RequestParam int employer,
+                                    @RequestParam List<Integer> skills,
+                                    Errors errors, Model model) {
 
-//        if (errors.hasErrors()) {
-//            model.addAttribute("title", "Add Job");
-//            return "add";
-//        }
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Job");
+            model.addAttribute("message", "Add Job does not work");
+            return "add";
+        }
 
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
         newJob.setSkills(skillObjs);
 
-        Optional optEmployer = employerRepository.findById(employerId);
+        Optional optEmployer = employerRepository.findById(employer);
         if (optEmployer.isPresent()) {
-            Employer employer = (Employer) optEmployer.get();
-            model.addAttribute("employer", employer);
+            Employer aEmployer = (Employer) optEmployer.get();
+            model.addAttribute("employer", aEmployer);
             jobRepository.save(newJob);
             return "view";
         } else {
@@ -73,9 +74,28 @@ public class HomeController {
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
-        model.addAttribute("job",jobRepository.findById(jobId));
+        model.addAttribute("job", jobRepository.findById(jobId));
         return "view";
     }
+
+    @GetMapping("delete")
+    public String renderDeleteEventForm(Model model) {
+        model.addAttribute("title", "Delete Job");
+        model.addAttribute("jobs", jobRepository.findAll());
+        return "delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteEventsForm(@RequestParam(required = false) int[] jobIds) {
+        if (jobIds != null) {
+            for (int id : jobIds) {
+                jobRepository.deleteById(id);
+            }
+        }
+        return "redirect:";
+    }
+
+
 
 
 }

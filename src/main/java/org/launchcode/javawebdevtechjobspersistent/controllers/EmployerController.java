@@ -20,12 +20,14 @@ public class EmployerController {
 
     @GetMapping()
     public String displayAllEmployers(Model model) {
-        model.addAttribute("employers",employerRepository.findAll());
+        model.addAttribute("title", "All Employer");
+        model.addAttribute("employers", employerRepository.findAll());
         return "employers/index";
     }
 
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
+        model.addAttribute("title", "Add Employer");
         model.addAttribute(new Employer());
         return "employers/add";
     }
@@ -43,7 +45,6 @@ public class EmployerController {
 
     @GetMapping("view/{employerId}")
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
-
         Optional optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
@@ -53,4 +54,23 @@ public class EmployerController {
             return "redirect:../";
         }
     }
+
+    @GetMapping("delete")
+    public String renderDeleteEventForm(Model model) {
+        model.addAttribute("title", "Delete Employers");
+        model.addAttribute("employers", employerRepository.findAll());
+        return "employers/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteEventsForm(@RequestParam(required = false) int[] employerIds) {
+        if (employerIds != null) {
+            for (int id : employerIds) {
+                employerRepository.deleteById(id);
+            }
+        }
+        return "redirect:";
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package org.launchcode.javawebdevtechjobspersistent.controllers;
 
 import org.launchcode.javawebdevtechjobspersistent.models.Job;
+import org.launchcode.javawebdevtechjobspersistent.models.JobData;
 import org.launchcode.javawebdevtechjobspersistent.models.data.EmployerRepository;
 import org.launchcode.javawebdevtechjobspersistent.models.data.JobRepository;
 import org.launchcode.javawebdevtechjobspersistent.models.data.SkillRepository;
@@ -52,10 +53,10 @@ public class ListController {
             jobs = jobRepository.findAll();
             model.addAttribute("title", "All Jobs");
         } else {
-//            jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
+            jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
-//        model.addAttribute("jobs", jobs);
+        model.addAttribute("jobs", jobs);
 
         return "list-jobs";
     }
