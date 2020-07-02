@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import org.launchcode.javawebdevtechjobspersistent.models.JobData;
-
 import java.util.HashMap;
 
 /**
@@ -45,10 +43,10 @@ public class ListController {
             jobs = jobRepository.findAll();
             model.addAttribute("title", "All Jobs");
         } else {
-            jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
+//            jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
-        model.addAttribute("jobs", jobs);
+//        model.addAttribute("jobs", jobs);
 
         return "list-jobs";
     }
