@@ -74,9 +74,17 @@ public class HomeController {
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
-        model.addAttribute("job", jobRepository.findById(jobId));
-        model.addAttribute("skills", skillRepository.findAll());
-        return "/jobs/view";
+        Optional optJob = jobRepository.findById(jobId);
+        if (optJob.isPresent()) {
+            Job aJob = (Job) optJob.get();
+            model.addAttribute("job", aJob);
+            return "/jobs/view";
+        } else {
+            return "redirect:../";
+        }
+
+//        model.addAttribute("job", jobRepository.findById(jobId));
+//        return "/jobs/view";
     }
 
     @GetMapping("delete")
