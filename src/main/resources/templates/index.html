@@ -10,6 +10,10 @@
     <h2 Th:text="${title}"></h2>
     <ul>
         <li th:each="job : ${jobs}">
+            <p th:text="${job.id}"></p>
+            <p th:text="${job.name}"></p>
+            <p th:text="${job.employer.name}"></p>
+            <p th:text="${job.skills}"></p>
             <a th:href="@{'/view/' + ${job.id}}" th:text="${job.name}"></a>
         </li>
     </ul>
