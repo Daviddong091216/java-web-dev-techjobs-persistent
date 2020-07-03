@@ -3,9 +3,10 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container  body-content">
-<h1 th:text="${'Job: ' + job.name}">Default Title</h1>
 
 <nav th:replace="fragments :: page-header"></nav>
+
+<h1 th:text="${'Job: ' + job.name}">Default Title</h1>
 
 <div class="job-listing">
     <p th:text="${'ID: ' + job.id}"></p>

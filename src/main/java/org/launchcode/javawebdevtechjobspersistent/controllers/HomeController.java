@@ -32,7 +32,7 @@ public class HomeController {
 
     @RequestMapping("")
     public String index(Model model) {
-        model.addAttribute("title", "My Jobs");
+        model.addAttribute("title", "Tech Jobs");
         model.addAttribute("jobs", jobRepository.findAll());
         return "index";
     }
@@ -43,7 +43,7 @@ public class HomeController {
         model.addAttribute("job", new Job());
         model.addAttribute("employers", employerRepository.findAll());
         model.addAttribute("skills", skillRepository.findAll());
-        return "add";
+        return "/jobs/add";
     }
 
     @PostMapping("add")
@@ -54,19 +54,18 @@ public class HomeController {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
-            model.addAttribute("message", "Add Job does not work");
-            return "add";
+            return "/jobs/add";
         }
 
-        List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
-        newJob.setSkills(skillObjs);
+//        List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
+//        newJob.setSkills(skillObjs);
 
         Optional optEmployer = employerRepository.findById(employer);
         if (optEmployer.isPresent()) {
             Employer aEmployer = (Employer) optEmployer.get();
             model.addAttribute("employer", aEmployer);
             jobRepository.save(newJob);
-            return "view";
+            return "/jobs/view";
         } else {
             return "redirect:../";
         }
@@ -75,14 +74,14 @@ public class HomeController {
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
         model.addAttribute("job", jobRepository.findById(jobId));
-        return "view";
+        return "/jobs/view";
     }
 
     @GetMapping("delete")
     public String renderDeleteEventForm(Model model) {
         model.addAttribute("title", "Delete Job");
         model.addAttribute("jobs", jobRepository.findAll());
-        return "delete";
+        return "/jobs/delete";
     }
 
     @PostMapping("delete")
@@ -92,7 +91,7 @@ public class HomeController {
                 jobRepository.deleteById(id);
             }
         }
-        return "redirect:";
+        return "redirect:../";
     }
 
 
