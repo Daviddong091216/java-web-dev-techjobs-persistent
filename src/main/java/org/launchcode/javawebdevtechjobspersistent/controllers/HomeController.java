@@ -21,6 +21,7 @@ import java.util.Optional;
  */
 @Controller
 public class HomeController {
+
     @Autowired
     private JobRepository jobRepository;
 
@@ -93,8 +94,6 @@ public class HomeController {
         }
         return "redirect:../";
     }
-
-
 
 
 }
