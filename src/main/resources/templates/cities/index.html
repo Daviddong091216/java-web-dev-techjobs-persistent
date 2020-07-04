@@ -3,21 +3,21 @@
 <head th:replace="fragments :: head">
 </head>
 <body>
+
 <div th:replace="fragments :: navigation1"></div>
 <div th:replace="fragments :: navigation2"></div>
-
 
 <div class="container body-content">
     <h2 th:text="${title}"></h2>
 
-    <p th:unless="${skills} and ${skills.size()}" style="color:red">no skills!</p>
+    <p th:unless="${cities} and ${cities.size()}" style="color:red">no city!</p>
 
     <ul>
-        <li th:each="skill : ${skills}">
-            <a th:href="@{'/skills/view/' + ${skill.id}}" th:text="${skill.name}"></a>
+        <li th:each="city : ${cities}">
+            <a th:href="@{'/cities/view/' + ${city.id}}" th:text="${city.name}"></a>
         </li>
     </ul>
-    <a th:href="@{'/skills/add'}">Add Skills</a>
+    <a th:href="@{'/cities/add'}">Add Cities</a>
 
 </div>
 <div th:replace="fragments::footer"></div>

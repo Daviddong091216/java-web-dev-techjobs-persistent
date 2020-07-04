@@ -12,6 +12,10 @@ public class Job extends AbstractEntity {
     @NotNull(message = "Employer is required.")
     private Employer employer;
 
+    @ManyToOne
+    @NotNull(message = "City is required.")
+    private City city;
+
     @ManyToMany
     private final List<Skill> skills= new ArrayList<>();
 
@@ -28,6 +32,14 @@ public class Job extends AbstractEntity {
 
     public void setEmployer(Employer employer) {
         this.employer = employer;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public List<Skill> getSkills() {

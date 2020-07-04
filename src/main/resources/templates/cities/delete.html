@@ -9,16 +9,16 @@
 <h2 th:text="${title}"></h2>
 <form method="post">
 
-    <th:block th:each="employer : ${employers}">
+    <th:block th:each="city : ${cities}">
         <div class="form-group">
             <label>
-                <span th:text="${employer.name}"></span>
-                <input type="checkbox" name="employerIds" th:value="${employer.id}" class="form-control">
+                <span th:text="${city.name}"></span>
+                <input type="checkbox" name="cityIds" th:value="${city.id}" class="form-control">
             </label>
         </div>
     </th:block>
 
-    <input type="submit" value="Delete Selected Employers" class="btn btn-danger">
+    <input type="submit" value="Delete Selected Cities" class="btn btn-danger">
 </form>
 <div th:replace="fragments::footer"></div>
 </body>

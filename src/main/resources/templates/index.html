@@ -4,15 +4,25 @@
 </head>
 <body>
 
-<div th:replace="fragments :: page-header"></div>
+<!--<div th:replace="fragments :: page-header"></div>-->
+<div th:replace="fragments :: navigation1"></div>
+<div th:replace="fragments :: navigation2"></div>
 
 <div class="container body-content">
     <h2 Th:text="${title}"></h2>
-    <ul>
-        <li th:each="job : ${jobs}">
-            <a th:href="@{'/view/' + ${job.id}}" th:text="${job.name}"></a>
-        </li>
-    </ul>
+
+    <h3>
+        <ul>
+            <li th:each="action : ${actions}">
+                <a th:href="@{'/' + ${action.key}}" th:text="${action.value}"></a>
+            </li>
+        </ul>
+    </h3>
+<!--    <ul>-->
+<!--        <li th:each="job : ${jobs}">-->
+<!--            <a th:href="@{'/view/' + ${job.id}}" th:text="${job.name}"></a>-->
+<!--        </li>-->
+<!--    </ul>-->
 </div>
 
 <div th:replace="fragments::footer"></div>

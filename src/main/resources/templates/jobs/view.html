@@ -3,10 +3,8 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container  body-content">
-
-<nav th:replace="fragments :: page-header"></nav>
-
-<h1>I love code!!</h1>
+<div th:replace="fragments :: navigation1"></div>
+<div th:replace="fragments :: navigation2"></div>
 
 <h1 th:text="${'Job: ' + job.name}">Default Title</h1>
 
@@ -15,6 +13,9 @@
     <p th:text="${'Name: ' + job.name}"></p>
     <p>
         Employer: <a th:href="@{'/employers/view/' + ${job.employer.id}}" th:text="${job.employer.name}"></a>
+    </p>
+    <p>
+        Location: <a th:text="${job.employer.location}"></a>
     </p>
     <p> Skills:
         <ul>

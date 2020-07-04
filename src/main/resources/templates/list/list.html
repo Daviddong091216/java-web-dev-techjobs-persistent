@@ -3,8 +3,8 @@
 <head th:replace="fragments :: head">
 </head>
 <body>
-
-<div th:replace="fragments :: page-header"></div>
+<div th:replace="fragments :: navigation1"></div>
+<div th:replace="fragments :: navigation2"></div>
 
 <div class="container body-content">
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
@@ -14,7 +14,9 @@
 <table class="centeredTable">
     <tr>
         <th>All</th>
+        <th>Job</th>
         <th>Employer</th>
+        <th>City</th>
         <th>Skill</th>
     </tr>
 
@@ -25,8 +27,18 @@
             </li>
         </td>
         <td>
+            <li th:each="job : ${jobs}">
+                <a th:href="@{/list/jobs(column=name,value=${job.name})}" th:text="${job.name}"></a>
+            </li>
+        </td>
+        <td>
             <li th:each="employer : ${employers}">
                 <a th:href="@{/list/jobs(column=employer,value=${employer.name})}" th:text="${employer.name}"></a>
+            </li>
+        </td>
+        <td>
+            <li th:each="city : ${cities}">
+                <a th:href="@{/list/jobs(column=city,value=${city.name})}" th:text="${city.name}"></a>
             </li>
         </td>
         <td>

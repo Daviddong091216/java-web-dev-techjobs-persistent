@@ -3,12 +3,15 @@
 <head th:replace="fragments :: head">
 </head>
 <body>
-
-<div th:replace="fragments :: page-header"></div>
+<div th:replace="fragments :: navigation1"></div>
+<div th:replace="fragments :: navigation2"></div>
 
 <div class="container body-content">
 
+
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+    <p th:unless="${jobs} and ${jobs.size()}" style="color:red">no job!</p>
 
     <table class="job-listing">
         <tr th:each="job : ${jobs}">
@@ -22,6 +25,12 @@
                     Employer:
                     <a th:href="@{'/employers/view/' + ${job.employer.id}}" th:text="${job.employer.name}"></a>
                 </p>
+                <p>
+                    Location:
+                    <a th:text="${job.employer.location}"></a>
+                </p>
+
+
                 <p>
                     Skills:
                     <ul th:each="skill : ${job.skills}">

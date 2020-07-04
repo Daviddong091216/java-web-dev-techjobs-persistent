@@ -6,19 +6,22 @@
 <div th:replace="fragments :: navigation1"></div>
 <div th:replace="fragments :: navigation2"></div>
 
-<h1 th:text="${'Skill: ' + skill.name}">Default Title</h1>
+<h1 th:text="${'City: ' + city.name}">Default Title</h1>
+
 
 <div class="job-listing">
-    <p th:text="${'Name: ' + skill.name}"></p>
-    <p th:text="${'Description: ' + skill.description}"></p>
+    <p th:text="${'City:' + city.name}"></p>
+
     <p> Jobs:
-        <ul>
-            <li th:each="job : ${skill.jobs}">
-                <a th:href="@{'/view/' + ${job.id}}" th:text="${job.name}"></a>
-            </li>
-        </ul>
+    <ul>
+        <li th:each="job : ${city.jobs}">
+            <a th:href="@{'/view/' + ${job.id}}" th:text="${job.name}"></a>
+        </li>
+    </ul>
     </p>
+
 </div>
+
 <div th:replace="fragments::footer"></div>
 </body>
 </html>

@@ -4,12 +4,14 @@
 </head>
 <body>
 
-<div th:replace="fragments :: page-header"></div>
+<div th:replace="fragments :: navigation1"></div>
+<div th:replace="fragments :: navigation2"></div>
 
-<p th:unless="${employers} and ${employers.size()}">no jobs!</p>
+
 
 <div class="container body-content">
     <h2 th:text="${title}"></h2>
+    <p th:unless="${employers} and ${employers.size()}" style="color:red">no employers!</p>
     <ul>
         <li th:each="employer : ${employers}">
             <a th:href="@{'/employers/view/' + ${employer.id}}" th:text="${employer.name}"></a>

@@ -60,6 +60,8 @@ div.job-listing {
     width: 80%;
     background-color: #e4e4e4;
 }
+
+
 .footer {
    position:fixed;
    margin-top:auto;
@@ -71,3 +73,33 @@ div.job-listing {
    height:30px;   /* Height of the footer */
    background:#8B0000;
 }
+
+ul.list li{
+  display: inline;
+  width: 158px;
+  float: left;
+  /*border: 1px solid red;*/
+}
+
+.nav1 {
+    position:fixed;
+    margin-top:auto;
+    text-align: left;
+    color:white;
+    font-size:15px;
+    top:0;
+    width:100%;
+    height:50px;
+    background:DarkGreen;
+ }
+ .nav2 {
+      position:fixed;
+      margin-top:auto;
+      text-align: left;
+      color:white;
+      font-size:15px;
+      top:50px;
+      width:100%;
+      height:30px;
+      background:GoldenRod;
+   }
