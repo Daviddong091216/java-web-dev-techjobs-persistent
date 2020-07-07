@@ -115,7 +115,7 @@ public class HomeController {
                     jobRepository.deleteById(id);
                 }
             }
-            return "redirect:../";
+            return "redirect:";
         }
 
 

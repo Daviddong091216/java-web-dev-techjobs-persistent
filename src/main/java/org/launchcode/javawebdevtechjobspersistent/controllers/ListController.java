@@ -2,6 +2,7 @@ package org.launchcode.javawebdevtechjobspersistent.controllers;
 
 import org.launchcode.javawebdevtechjobspersistent.models.Job;
 import org.launchcode.javawebdevtechjobspersistent.models.JobData;
+import org.launchcode.javawebdevtechjobspersistent.models.data.CityRepository;
 import org.launchcode.javawebdevtechjobspersistent.models.data.EmployerRepository;
 import org.launchcode.javawebdevtechjobspersistent.models.data.JobRepository;
 import org.launchcode.javawebdevtechjobspersistent.models.data.SkillRepository;
@@ -29,12 +30,17 @@ public class ListController {
     @Autowired
     private SkillRepository skillRepository;
 
+    @Autowired
+    private CityRepository cityRepository;
+
     static HashMap<String, String> columnChoices = new HashMap<>();
 
     public ListController() {
         columnChoices.put("all", "All");
+        columnChoices.put("name", "Job Name");
         columnChoices.put("employer", "Employer");
-        columnChoices.put("skills", "Skills");
+        columnChoices.put("skill", "Skills");
+        columnChoices.put("city", "City");
     }
 
     @RequestMapping("")
@@ -42,6 +48,7 @@ public class ListController {
         model.addAttribute("jobs", jobRepository.findAll());
         model.addAttribute("employers", employerRepository.findAll());
         model.addAttribute("skills", skillRepository.findAll());
+        model.addAttribute("cities", cityRepository.findAll());
         return "/list/list";
     }
 

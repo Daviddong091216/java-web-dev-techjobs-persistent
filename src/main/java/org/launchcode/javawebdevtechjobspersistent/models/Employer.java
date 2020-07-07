@@ -10,26 +10,26 @@ import java.util.List;
 @Entity
 public class Employer extends AbstractEntity {
 
-    @NotNull(message = "Location is required!")
+    @NotNull(message = "Address is required!")
     @Size(min = 2, max = 100, message = "Location must be between 2 and 100 characters.")
-    private String location;
+    private String address;
 
     @OneToMany(mappedBy = "employer")
-    private final List<Job> jobs=new ArrayList<>();
+    private final List<Job> jobs = new ArrayList<>();
 
     public Employer() {
     }
 
-    public Employer(String location) {
-        this.location = location;
+    public Employer(String address) {
+        this.address = address;
     }
 
-    public String getLocation() {
-        return location;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<Job> getJobs() {

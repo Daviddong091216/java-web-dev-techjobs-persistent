@@ -15,7 +15,10 @@
         Employer: <a th:href="@{'/employers/view/' + ${job.employer.id}}" th:text="${job.employer.name}"></a>
     </p>
     <p>
-        Location: <a th:text="${job.employer.location}"></a>
+        City: <a th:href="@{'/cities/view/' + ${job.city.id}}" th:text="${job.city.name}"></a>
+    </p>
+    <p>
+        Address: <a th:text="${job.employer.address}"></a>
     </p>
     <p> Skills:
         <ul>
