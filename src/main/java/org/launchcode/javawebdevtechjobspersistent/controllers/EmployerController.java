@@ -18,7 +18,7 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
-    @GetMapping()
+    @GetMapping("")
     public String displayAllEmployers(Model model) {
         model.addAttribute("title", "All Employer");
         model.addAttribute("employers", employerRepository.findAll());
@@ -41,6 +41,7 @@ public class EmployerController {
         }
         employerRepository.save(newEmployer);
         return "redirect:";
+        //route "/employers/" to display all employers(in /employers/index.html")
     }
 
     @GetMapping("view/{employerId}")
@@ -52,6 +53,7 @@ public class EmployerController {
             return "employers/view";
         } else {
             return "redirect:../";
+            //route "/" to display the main page(in /templates/index.html")
         }
     }
 
@@ -70,6 +72,7 @@ public class EmployerController {
             }
         }
         return "redirect:";
+        //route "/employers/" to display all employers(in /employers/index.html")
     }
 
 

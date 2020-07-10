@@ -9,7 +9,7 @@
 <div class="container body-content">
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
     <h2 class = "centered">View Jobs By Category</h2>
-</div>
+
 
 <table class="centeredTable">
     <tr>
@@ -48,6 +48,8 @@
         </td>
     </tr>
 </table>
+</div>
 <div th:replace="fragments::footer"></div>
+
 </body>
 </html>

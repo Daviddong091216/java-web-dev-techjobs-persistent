@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container  body-content">
+<body >
 
 <div th:replace="fragments :: navigation1"></div>
 <div th:replace="fragments :: navigation2"></div>
+
+<div class="container  body-content">
 
 <h2 th:text="${title}"></h2>
 <form method="post">
@@ -20,6 +22,8 @@
 
     <input type="submit" value="Delete Selected Cities" class="btn btn-danger">
 </form>
+</div>
 <div th:replace="fragments::footer"></div>
+
 </body>
 </html>

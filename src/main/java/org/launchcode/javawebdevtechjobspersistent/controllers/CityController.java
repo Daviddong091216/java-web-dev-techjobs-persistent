@@ -34,8 +34,7 @@ public class CityController {
 
     @PostMapping("add")
     public String processAddCityForm(@ModelAttribute @Valid City newCity,
-                                         Errors errors, Model model) {
-
+                                     Errors errors) {
         if (errors.hasErrors()) {
             return "cities/add";
         }
@@ -71,6 +70,4 @@ public class CityController {
         }
         return "redirect:";
     }
-
-
 }

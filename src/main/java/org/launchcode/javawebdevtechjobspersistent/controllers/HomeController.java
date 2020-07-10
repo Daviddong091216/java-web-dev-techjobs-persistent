@@ -95,8 +95,7 @@ public class HomeController {
         } else {
             return "redirect:../";
         }
-
-
+//        The following  code is the wrong code at first, Steve helped me to find the real problem!
 //        model.addAttribute("job", jobRepository.findById(jobId));
 //        return "/jobs/view";
         }

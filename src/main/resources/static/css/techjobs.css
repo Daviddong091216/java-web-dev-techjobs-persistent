@@ -85,18 +85,18 @@ ul.list li{
     position:fixed;
     margin-top:auto;
     text-align: left;
-    color:white;
+    color:black;
     font-size:15px;
     top:0;
     width:100%;
     height:50px;
-    background:DarkGreen;
+    background:#8B0000;
  }
  .nav2 {
       position:fixed;
       margin-top:auto;
       text-align: left;
-      color:white;
+      color:black;
       font-size:15px;
       top:50px;
       width:100%;

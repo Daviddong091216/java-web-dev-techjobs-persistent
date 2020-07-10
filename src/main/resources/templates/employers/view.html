@@ -2,9 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container  body-content">
+<body >
 <div th:replace="fragments :: navigation1"></div>
 <div th:replace="fragments :: navigation2"></div>
+
+<div class="container  body-content">
 
 <h1 th:text="${'Employer: ' + employer.name}">Default Title</h1>
 
@@ -21,7 +23,8 @@
     </p>
 
 </div>
-
+</div>
 <div th:replace="fragments::footer"></div>
+
 </body>
 </html>
